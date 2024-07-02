@@ -29,6 +29,8 @@ SH_DECL_HOOK3(ISteamGameCoordinator, SendMessage, SH_NOATTRIB, 0, EGCResults, ui
 SH_DECL_HOOK1(ISteamGameCoordinator, IsMessageAvailable, SH_NOATTRIB, 0, bool, uint32 *);
 SH_DECL_HOOK4(ISteamGameCoordinator, RetrieveMessage, SH_NOATTRIB, 0, EGCResults, uint32 *, void *, uint32, uint32 *);
 
+static bool g_bNextFrameHook = false;
+
 static ISteamGameCoordinator *GetSteamGCPointer()
 {
 	return g_SteamWorks.pSWGameServer->GetGameCoordinator();
@@ -48,6 +50,7 @@ SteamWorksGCHooks::SteamWorksGCHooks()
 	}
 	else
 	{
+		g_bNextFrameHook = true;
 		smutils->AddGameFrameHook(OurGCGameFrameHook);
 	}
 }
@@ -191,12 +194,18 @@ void SteamWorksGCHooks::RemoveHooks(ISteamGameCoordinator *pGC, bool destroyed)
 
 void OurGCGameFrameHook(bool simulating) /* What we do for SDK independence. */
 {
-	ISteamGameCoordinator *pGC = GetSteamGCPointer();
-	if (pGC == NULL)
+	if (g_bNextFrameHook)
 	{
-		return;
+		g_bNextFrameHook = false;
+
+		ISteamGameCoordinator *pGC = GetSteamGCPointer();
+		if (pGC == NULL)
+		{
+			return;
+		}
+
+		g_SteamWorks.pGCHooks->AddHooks(pGC);
 	}
 
-	g_SteamWorks.pGCHooks->AddHooks(pGC);
 	smutils->RemoveGameFrameHook(OurGCGameFrameHook);
 }
