@@ -111,6 +111,13 @@ jobs:
           python -m pip install wheel
           pip install git+https://github.com/alliedmodders/ambuild
 
+      - name: Checking out hl2sdk-l4d
+        uses: actions/checkout@v3
+        with:
+          repository: alliedmodders/hl2sdk
+          ref: l4d
+          path: hl2sdk-l4d
+  
       - name: Checking out hl2sdk-l4d2
         uses: actions/checkout@v3
         with:
