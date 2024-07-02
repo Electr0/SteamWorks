@@ -6,8 +6,10 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
+    branches:
+     - "master"
     tags:
-    - 'v*'
+     - 'v*'
   pull_request:
 
   # Allows you to run this workflow manually from the Actions tab
@@ -121,16 +123,16 @@ jobs:
         with:
           repository: julianxhokaxhiu/SteamworksSDKCI
           ref: ${{ matrix.steamworks_version }}
-          path: hl2sdk-l4d2
+          path: steamworks-sdk
 
       - name: Checking out own repository
         uses: actions/checkout@v3
         with:
-          path: steamworks-sdk
+          path: steamworks
 
       - name: Run Build
         shell: bash
-        working-directory: ./steamworks
+        working-directory: steamworks
         run: |
           mkdir build
           cd build
