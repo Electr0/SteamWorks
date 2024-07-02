@@ -31,6 +31,9 @@ jobs:
 
         mm_version:
           - "1.10"
+        
+        steamworks_version:
+          - "1.56"
 
         include:
           - mm_version: "1.10"
@@ -116,15 +119,14 @@ jobs:
       - name: Getting Steam Works
         uses: actions/checkout@v3
         with:
-         repository: 'spumer/SteamworksSDK'
-         ref: 'v1.56'
-         path: 'steamworks-sdk'
-         token: ${{ secrets.STEAMWORKS_REPO_ACCESS_TOKEN }}
+          repository: julianxhokaxhiu/SteamworksSDKCI
+          ref: ${{ matrix.steamworks_version }}
+          path: hl2sdk-l4d2
 
       - name: Checking out own repository
         uses: actions/checkout@v3
         with:
-          path: steamworks
+          path: steamworks-sdk
 
       - name: Run Build
         shell: bash
@@ -137,7 +139,7 @@ jobs:
           --hl2sdk-root=$GITHUB_WORKSPACE \
           --mms-path=$GITHUB_WORKSPACE/metamod-${{ matrix.mm_version }} \
           --sm-path=$GITHUB_WORKSPACE/sourcemod-${{ matrix.sm_version }} \
-          --swsdk-path=$GITHUB_WORKSPACE/steamworks-sdk/sdk
+          --swsdk-path=$GITHUB_WORKSPACE/steamworks-sdk/steamworks_sdk/sdk
           ambuild
 
       - name: Uploading package
