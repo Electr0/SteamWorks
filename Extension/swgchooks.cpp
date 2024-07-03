@@ -48,7 +48,9 @@ SteamWorksGCHooks::SteamWorksGCHooks()
 	}
 	else
 	{
+#if SOURCE_ENGINE != SE_LEFT4DEAD
 		smutils->AddGameFrameHook(OurGCGameFrameHook);
+#endif
 	}
 }
 
