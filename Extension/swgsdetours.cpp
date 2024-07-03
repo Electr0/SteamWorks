@@ -34,9 +34,9 @@ DETOUR_DECL_STATIC0(SteamAPIShutdown, void)
 }
 
 #if SOURCE_ENGINE == SE_LEFT4DEAD
-DETOUR_DECL_STATIC6(SteamGameServer_InitSafeDetour, bool, uint32, unIP, uint16, usSteamPort, uint16, usGamePort, uint16, usQueryPort, EServerMode, eServerMode, const char *, pchVersionString, void *, unk, void *, unk2)
+DETOUR_DECL_STATIC8(SteamGameServer_InitSafeDetour, bool, uint32, unIP, uint16, usSteamPort, uint16, usGamePort, uint16, usQueryPort, EServerMode, eServerMode, const char *, pchVersionString, uint32, unk, uint32, unk2)
 #else
-DETOUR_DECL_STATIC6(SteamGameServer_InitSafeDetour, bool, uint32, unIP, uint16, usSteamPort, uint16, usGamePort, uint16, usQueryPort, EServerMode, eServerMode, const char *, pchVersionString, void *, unk, void *, unk2)
+DETOUR_DECL_STATIC6(SteamGameServer_InitSafeDetour, bool, uint32, unIP, uint16, usSteamPort, uint16, usGamePort, uint16, usQueryPort, EServerMode, eServerMode, const char *, pchVersionString)
 #endif
 {
 	bool bRet = DETOUR_STATIC_CALL(SteamGameServer_InitSafeDetour)(unIP, usSteamPort, usGamePort, usQueryPort, eServerMode, pchVersionString, unk, unk2); /* Call to init game interfaces. */
