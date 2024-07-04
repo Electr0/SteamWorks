@@ -38,7 +38,8 @@ jobs:
         mm_version:
           - "1.10"
         
-        steamworks_version: 1.56
+        steamworks_version:
+          - "1.56"
 
         include:
           - mm_version: "1.10"
