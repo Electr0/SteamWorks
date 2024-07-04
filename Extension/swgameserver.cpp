@@ -104,11 +104,14 @@ ISteamClient *SteamWorksGameServer::GetSteamClient(void)
 			pLibrary->CloseLibrary();
 		}
 
+		const char *pVersion = STEAMCLIENT_INTERFACE_VERSION;
+		GetGameSpecificConfigInterface("SteamClientInterfaceVersion", pVersion);
+		
 		if (pGSInternalCreateAddress != NULL)
-			this->m_pClient = static_cast<ISteamClient *>((*pGSInternalCreateAddress)(STEAMCLIENT_INTERFACE_VERSION));
+			this->m_pClient = static_cast<ISteamClient *>((*pGSInternalCreateAddress)(pVersion));
 		
 		if (this->m_pClient == NULL && pInternalCreateAddress != NULL)
-			this->m_pClient = static_cast<ISteamClient *>((*pInternalCreateAddress)(STEAMCLIENT_INTERFACE_VERSION));
+			this->m_pClient = static_cast<ISteamClient *>((*pInternalCreateAddress)(pVersion));
 	}
 
 	return this->m_pClient;
