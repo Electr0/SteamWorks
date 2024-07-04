@@ -15,7 +15,6 @@
 	
 	Author: Kyle Sanderson (KyleS).
 */
-
 #include "swhttprequest.h"
 
 #include <cstdio>
