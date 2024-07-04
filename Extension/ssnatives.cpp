@@ -57,7 +57,8 @@ static cell_t sm_RequestUserStats(IPluginContext *pContext, const cell_t *params
 
 	if (pStats == NULL)
 	{
-		return 0;
+		return pContext->ThrowNativeError("Invalid ServerStats pointer");
+		// return 0;
 	}
 
 	int client = gamehelpers->ReferenceToIndex(params[1]);
