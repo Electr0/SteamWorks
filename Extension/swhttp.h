@@ -21,10 +21,6 @@
 #include "steam_gameserver.h"
 #include "smsdk_ext.h"
 
-#ifndef STEAMHTTP_INTERFACE_VERSION
-#include "public/steam/isteamhttp.h"
-#endif
-
 class SteamWorksHTTP :
 	public IHandleTypeDispatch
 {
