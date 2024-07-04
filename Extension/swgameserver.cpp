@@ -106,8 +106,7 @@ ISteamClient *SteamWorksGameServer::GetSteamClient(void)
 
 		const char *pVersion = STEAMCLIENT_INTERFACE_VERSION;
 		GetGameSpecificConfigInterface("SteamClientInterfaceVersion", pVersion);
-		smutils->LogMessage(myself, "SteamClientInterfaceVersion: %s", pVersion);
-
+		
 		if (pGSInternalCreateAddress != NULL)
 			this->m_pClient = static_cast<ISteamClient *>((*pGSInternalCreateAddress)(pVersion));
 		
