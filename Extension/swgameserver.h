@@ -25,6 +25,10 @@
 	S_API ISteamClient *g_pSteamClientGameServer; /* This is awful. */
 #endif
 
+#ifndef STEAMHTTP_INTERFACE_VERSION
+#include "public/steam/isteamhttp.h"
+#endif
+
 class SteamWorksGameServer
 {
 	public:
