@@ -167,14 +167,13 @@ ISteamGameServerStats *SteamWorksGameServer::GetServerStats(void)
 {
 	if (this->m_pStats == NULL && this->GetSteamClient() != NULL)
 	{
-		// HSteamUser hSteamUser;
-		// HSteamPipe hSteamPipe;
-		// GetUserAndPipe(hSteamUser, hSteamPipe);
+		HSteamUser hSteamUser;
+		HSteamPipe hSteamPipe;
+		GetUserAndPipe(hSteamUser, hSteamPipe);
 		
-		// const char *pVersion = STEAMGAMESERVERSTATS_INTERFACE_VERSION;
-		// GetGameSpecificConfigInterface("SteamGameServerStatsInterfaceVersion", pVersion);
-		// this->m_pStats = this->GetSteamClient()->GetISteamGameServerStats(hSteamUser, hSteamPipe, pVersion);
-		return SteamGameServerStats();
+		const char *pVersion = STEAMGAMESERVERSTATS_INTERFACE_VERSION;
+		GetGameSpecificConfigInterface("SteamGameServerStatsInterfaceVersion", pVersion);
+		this->m_pStats = this->GetSteamClient()->GetISteamGameServerStats(hSteamUser, hSteamPipe, pVersion);
 	}
 	
 	return this->m_pStats;
