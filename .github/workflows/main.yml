@@ -18,10 +18,8 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    name: build with sm${{ matrix.sm_version }}-${{ matrix.sdk }} on ${{ matrix.os_short }}
+    name: build with sm${{ matrix.sm_version }} on ${{ matrix.os_short }}
     runs-on: ${{ matrix.os }}
-    env:
-      SDKS: '["${{ matrix.sdk }}"]'
     strategy:
       fail-fast: false
       matrix:
@@ -33,13 +31,12 @@ jobs:
           - "1.6"
           # - "1.10"
         
-        sdk:
-          - "l4d"
-          - "l4d2"
-
         mm_version:
           - "1.10"
         
+        steamworks_version:
+          - "1.56"
+
         include:
           - mm_version: "1.10"
             mm_branch: "1.10-dev"
@@ -55,12 +52,6 @@ jobs:
 
           - os: windows-latest
             os_short: win
-          
-          - sdk: "l4d"
-            steamworks_version: "1.11"
-
-          - sdk: "l4d2"
-            steamworks_version: "1.56"
 
     steps:
       - name: Prepare env
@@ -120,13 +111,20 @@ jobs:
           python -m pip install wheel
           pip install git+https://github.com/alliedmodders/ambuild
 
-      - name: Checking out hl2sdk
+      - name: Checking out hl2sdk-l4d
         uses: actions/checkout@v3
         with:
           repository: alliedmodders/hl2sdk
-          ref: ${{ matrix.sdk }}
-          path: hl2sdk-${{ matrix.sdk }}
-  
+          ref: l4d
+          path: hl2sdk-l4d
+
+      - name: Checking out hl2sdk-l4d2
+        uses: actions/checkout@v3
+        with:
+          repository: alliedmodders/hl2sdk
+          ref: l4d2
+          path: hl2sdk-l4d2
+    
       - name: Getting Steam Works
         uses: actions/checkout@v3
         with:
@@ -156,5 +154,5 @@ jobs:
       - name: Uploading package
         uses: actions/upload-artifact@v2
         with:
-          name: steamworks-${{ env.sdk }}-sm${{ matrix.sm_version }}-${{ matrix.os_short }}-${{ env.GITHUB_SHA_SHORT }}
+          name: steamworks-sm${{ matrix.sm_version }}-${{ matrix.os_short }}-${{ env.GITHUB_SHA_SHORT }}
           path: steamworks/build/package
