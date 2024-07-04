@@ -22,10 +22,10 @@
 #include "smsdk_ext.h"
 #include "isteamhttp.h"
 
-#if !defined(HTTPRequestHeadersReceived_t)
+#if !defined(INVALID_HTTPCOOKIE_HANDLE)
 struct HTTPRequestHeadersReceived_t
 {
-	enum { k_iCallback = k_iSteamHTTPCallbacks + 2 };
+	enum { k_iCallback = k_iClientHTTPCallbacks + 2 };
 
 	// Handle value for the request that has received headers.
 	HTTPRequestHandle m_hRequest;
@@ -36,10 +36,10 @@ struct HTTPRequestHeadersReceived_t
 };
 #endif
 
-#if !defined(HTTPRequestDataReceived_t)
+#if !defined(INVALID_HTTPCOOKIE_HANDLE)
 struct HTTPRequestDataReceived_t
 {
-	enum { k_iCallback = k_iSteamHTTPCallbacks + 3 };
+	enum { k_iCallback = k_iClientHTTPCallbacks + 3 };
 
 	// Handle value for the request that has received data.
 	HTTPRequestHandle m_hRequest;
