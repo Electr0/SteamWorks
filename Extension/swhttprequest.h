@@ -22,7 +22,7 @@
 #include "smsdk_ext.h"
 #include "isteamhttp.h"
 
-#if STEAMHTTP_INTERFACE_VERSION == "STEAMHTTP_INTERFACE_VERSION001"
+#if !defined(HTTPRequestHeadersReceived_t)
 struct HTTPRequestHeadersReceived_t
 {
 	enum { k_iCallback = k_iSteamHTTPCallbacks + 2 };
@@ -34,7 +34,9 @@ struct HTTPRequestHeadersReceived_t
 	// no context value was set.
 	uint64 m_ulContextValue;
 };
+#endif
 
+#if !defined(HTTPRequestDataReceived_t)
 struct HTTPRequestDataReceived_t
 {
 	enum { k_iCallback = k_iSteamHTTPCallbacks + 3 };
