@@ -57,7 +57,7 @@ jobs:
             os_short: win
           
           - sdk: "l4d"
-            steamworks_version: "1.11"
+            steamworks_version: "1.16"
 
           - sdk: "l4d2"
             steamworks_version: "1.56"
