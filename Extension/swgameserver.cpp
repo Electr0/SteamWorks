@@ -61,8 +61,8 @@ void SteamWorksGameServer::Reset(void)
 
 ISteamClient *SteamWorksGameServer::GetSteamClient(void)
 {
-	if (g_pSteamClientGameServer != NULL)
-		return g_pSteamClientGameServer;
+	// if (g_pSteamClientGameServer != NULL)
+	// 	return g_pSteamClientGameServer;
 
 	/*
 		The following is assumed from an unreleased version of the SteamWorks SDK, first seen (and reversed) in CS:GO.
