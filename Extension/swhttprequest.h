@@ -20,6 +20,7 @@
 #include "isteamgameserver.h"
 #include "steam_gameserver.h"
 #include "smsdk_ext.h"
+#include "isteamhttp.h"
 
 #if STEAMHTTP_INTERFACE_VERSION == "STEAMHTTP_INTERFACE_VERSION001"
 struct HTTPRequestHeadersReceived_t
