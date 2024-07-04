@@ -21,6 +21,39 @@
 #include "steam_gameserver.h"
 #include "smsdk_ext.h"
 
+#if STEAMHTTP_INTERFACE_VERSION == "STEAMHTTP_INTERFACE_VERSION001"
+struct HTTPRequestHeadersReceived_t
+{
+	enum { k_iCallback = k_iSteamHTTPCallbacks + 2 };
+
+	// Handle value for the request that has received headers.
+	HTTPRequestHandle m_hRequest;
+
+	// Context value that the user defined on the request that this callback is associated with, 0 if
+	// no context value was set.
+	uint64 m_ulContextValue;
+};
+
+struct HTTPRequestDataReceived_t
+{
+	enum { k_iCallback = k_iSteamHTTPCallbacks + 3 };
+
+	// Handle value for the request that has received data.
+	HTTPRequestHandle m_hRequest;
+
+	// Context value that the user defined on the request that this callback is associated with, 0 if
+	// no context value was set.
+	uint64 m_ulContextValue;
+
+
+	// Offset to provide to GetHTTPStreamingResponseBodyData to get this chunk of data
+	uint32 m_cOffset;
+
+	// Size to provide to GetHTTPStreamingResponseBodyData to get this chunk of data
+	uint32 m_cBytesReceived;
+};
+#endif
+
 class SteamWorksHTTPRequest
 {
 	public:
