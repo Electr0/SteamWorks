@@ -38,9 +38,6 @@ jobs:
         mm_version:
           - "1.10"
         
-        steamworks_version:
-          - "1.56"
-
         include:
           - mm_version: "1.10"
             mm_branch: "1.10-dev"
@@ -59,6 +56,9 @@ jobs:
           
           - sdk: l4d
             steamworks_version: 1.11
+
+          - sdk: l4d2
+            steamworks_version: 1.56
 
     steps:
       - name: Prepare env
