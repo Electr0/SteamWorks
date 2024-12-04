@@ -30,7 +30,7 @@ jobs:
           - windows-latest
 
         sm_version:
-          - "1.3"
+          - "1.12"
           # - "1.10"
         
         sdk:
@@ -38,17 +38,17 @@ jobs:
           - "l4d2"
 
         mm_version:
-          - "1.11"
+          - "1.10"
         
         include:
-          - mm_version: "1.11"
-            mm_branch: "1.11-dev"
+          - mm_version: "1.10"
+            mm_branch: "1.10-dev"
 
           # - sm_version: "1.10"
           #   sm_branch: "1.10-dev"
 
           - sm_version: "1.12"
-            sm_branch: "master"
+            sm_branch: "1.12-dev"
 
           - os: ubuntu-latest
             os_short: linux
